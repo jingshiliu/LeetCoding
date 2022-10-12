@@ -1,7 +1,9 @@
 def trap(height) -> int:
+    # Idea:
+    # min(maxL, maxR) - height = water can hold
     res, l, r = 0, 0, len(height) - 1
     maxL, maxR = 0, 0
-    while l <= r:
+    while l <= r:   # O(n)
         if maxL <= maxR:
             maxL = max(maxL, height[l])
             res += maxL - height[l]
