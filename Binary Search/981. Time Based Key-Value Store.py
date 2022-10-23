@@ -30,7 +30,7 @@ class TimeMap:
 
         l, r = 1, len(timestampList)
 
-        while l < r:
+        while l < r:    # O(logn)
             cur = (l + r) // 2
             if timestampList[cur] > timestamp >= timestampList[cur - 1]:
                 return self.timeMap[key][timestampList[cur - 1]]
