@@ -69,8 +69,8 @@ def solveNQueens2(n: int):
     chess = [['.'] * n for i in range(n)]
 
     def isOk(row, col):
-        nonlocal chess
-        for i in range(col):
+        nonlocal n
+        for i in range(n):
             if chess[row][i] == 'Q':
                 return False
             if row + i < n and col - i >= 0 and chess[row + i][col - i] == 'Q':
@@ -96,7 +96,6 @@ def solveNQueens2(n: int):
                 chess[row][col] = 'Q'
                 if col == n - 1:
                     res.append([''.join(i) for i in chess])
-                    print(res[-1])
                     backTrack[col] = -1
                     chess[row][col] = '.'
                     col -= 1
@@ -110,7 +109,3 @@ def solveNQueens2(n: int):
         if col == -1:
             break
     return res
-
-solveNQueens2(4)
-print(len(solveNQueens2(8)))
-
