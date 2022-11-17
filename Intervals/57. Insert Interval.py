@@ -27,6 +27,42 @@ def insert(intervals, newInterval):
     return res[1:]
 
 
+# Solution 2
+
+class Solution:
+    def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
+        if not intervals:
+            return [newInterval]
+
+        res = [[-1, -1]]
+        i = 0
+        newIsInserted = False
+        while i < len(intervals):
+            cur = intervals[i]
+
+            if not newIsInserted and newInterval[0] <= cur[0]:
+                cur = newInterval
+                newIsInserted = True
+            else:
+                i += 1
+
+            prev = res[-1]
+
+            if prev[1] >= cur[0]:
+                prev[1] = max(prev[1], cur[1])
+            else:
+                res.append(cur)
+
+        if len(res) == len(intervals) + 1:
+            prev = res[-1]
+            if prev[1] >= newInterval[0]:
+                prev[1] = max(prev[1], newInterval[1])
+            else:
+                res.append(newInterval)
+
+        return res[1:]
+
+
 intervals = [[1,5]]
 
 newInterval = [0,0]
