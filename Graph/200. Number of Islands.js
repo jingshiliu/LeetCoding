@@ -2,7 +2,7 @@
  * @param {string[][]} grid
  * @return {number}
  */
-function numIslands(grid) {
+var numIslands = function(grid) {
     let res = 0
 
     for (let i = 0; i < grid.length; i++) {
