@@ -1,4 +1,8 @@
 /**
+ * detect cycle in a graph by using dfs
+ * we search the graph starting at a node, and detect cycle by visit the nodes it points to
+ * we do this recursively and if we visit some node again before its release on call stack
+ * we know there is a cycle
  * @param {number} numCourses
  * @param {number[][]} prerequisites
  * @return {boolean}
