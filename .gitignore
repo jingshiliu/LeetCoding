@@ -3,3 +3,4 @@ venv
 lib
 bin
 .idea
+node_modules
