@@ -18,8 +18,8 @@ def myAtoi(s: str) -> int:
         while i < len(s) and s[i].isnumeric():
             number = number * 10 + int(s[i])
             i += 1
-
         break
+
     number *= sign
     if number < minNum:
         return minNum
