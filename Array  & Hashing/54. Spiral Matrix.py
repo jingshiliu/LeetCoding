@@ -1,14 +1,16 @@
 def spiralOrder(matrix):
-    # when see WALL (index bound), or see a visited index, turn right
-    # 0 0 -> 0 1 -> 0 2 -> 1 2 -> 2 2 -> 2 1 -> 2 0 -> 1 0 -> 1 1
-    # x, y
-    # x     y+1
-    # x+1,  y
-    # x,    y-1
-    # x-1,  y
+    """
+    when see WALL (index bound), or see a visited index, turn right
+    0 0 -> 0 1 -> 0 2 -> 1 2 -> 2 2 -> 2 1 -> 2 0 -> 1 0 -> 1 1
+    x, y
+    x     y+1
+    x+1,  y
+    x,    y-1
+    x-1,  y
 
-    # update direction: curDirection = (curDirection + 1)%4
-    # get direction: directions[curDirection]
+    update direction: curDirection = (curDirection + 1)%4
+    get direction: directions[curDirection]
+    """
     directions = [[0, 1], [1, 0], [0, -1], [-1, 0]]
     curDirection = 0
     isRow = True
@@ -79,4 +81,4 @@ def spiralOrder2(matrix):
 matrix = [[1,2,3],[4,5,6],[7,8,9]]
 
 
-print(spiralOrder2(matrix))
+print(spiralOrder(matrix))
