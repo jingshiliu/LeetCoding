@@ -1,4 +1,4 @@
-from Tree.TreeNode import TreeNode
+from Categories.Tree.TreeNode import TreeNode
 
 
 def serialize(root):
