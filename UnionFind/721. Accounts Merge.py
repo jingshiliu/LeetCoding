@@ -22,7 +22,7 @@
 #             self.rank[p2] += 1
 #         return True
 
-from ...MyCollections.UnionFind import UnionFind
+from MyCollections.UnionFind import UnionFind
 
 def accountsMerge(accounts):
     # email : parentIndex
