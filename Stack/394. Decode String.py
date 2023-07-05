@@ -1,4 +1,11 @@
 def decodeString(s: str) -> str:
+    # Time: O(maxK^countK * n)
+    # maxK is maximum of K, countK is nested level of K
+    # if s = 10[10[10[10[aaa]]], time = 10 * 10 * 10 * 10 * 3 = 10^4 * 3 = maxK^countK * n
+
+    # Space: O(maxK^countK * n)
+    # We calculate, and store strings calculated
+    
     # num [string]
     # after num, must be string
 
