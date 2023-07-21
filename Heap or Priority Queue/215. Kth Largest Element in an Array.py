@@ -1,3 +1,10 @@
+def find_kth_largest_heap(nums:list[int], k: int) -> int:
+    heapq.heapify(nums)
+    for i in range(len(nums) - k):
+        heapq.heappop(nums)
+    return nums[0]
+
+
 def find_kth_largest(nums:list[int], k: int) -> int:
     # pivot
     # performing quick select
