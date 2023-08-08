@@ -1,7 +1,59 @@
 import heapq
+from collections import defaultdict
+from heapq import heappush, heappop
 
 
-class Twitter:
+class Twitter2:
+    def __init__(self):
+        self.twitter = defaultdict(lambda: {"following": set(), "tweets": []})
+        self.time = 0
+
+    def postTweet(self, userId: int, tweetId: int) -> None:
+        self.twitter[userId]["tweets"].append([self.time, tweetId])
+        self.time -= 1
+
+    def getNewsFeed(self, userId: int) :
+        # put most recent 1 post onto a heap for all followee
+        # the top of the heap is the most recent, lets say it is posted by User 1
+        # then the candidate of second recent must from rest of the heap,
+        # and the second most recent of User 1
+        # sort like have pointer on all of the followee, move the pointer once it points to the most recent
+
+        # [time, tweetId, followeeId, followee_nth_recent_post]
+        user = self.twitter[userId]
+        heap = []
+        if user["tweets"]:
+            heappush(heap, [user["tweets"][-1][0], user["tweets"][-1][1], userId, 1])
+
+        for followeeId in user["following"]:
+            followee = self.twitter[followeeId]
+            if followee["tweets"]:
+                heappush(heap, [followee["tweets"][-1][0], followee["tweets"][-1][1], followeeId, 1])
+
+        news_feed = []
+        while len(news_feed) < 10 and heap:
+            time, tweetId, followeeId, followee_nth = heappop(heap)
+            news_feed.append(tweetId)
+
+            if followee_nth == len(self.twitter[followeeId]["tweets"]):
+                continue
+            followee_nth += 1
+            followee_nth_recent_tweet = self.twitter[followeeId]["tweets"][-1 * followee_nth]
+            heappush(heap, [followee_nth_recent_tweet[0], followee_nth_recent_tweet[1], followeeId, followee_nth])
+
+        return news_feed
+
+    def follow(self, followerId: int, followeeId: int) -> None:
+        self.twitter[followerId]["following"].add(followeeId)
+
+    def unfollow(self, followerId: int, followeeId: int) -> None:
+        if followeeId in self.twitter[followerId]["following"]:
+            self.twitter[followerId]["following"].remove(followeeId)
+
+
+
+
+class Twitter1:
 
     def __init__(self):
         self.twitter = {}
