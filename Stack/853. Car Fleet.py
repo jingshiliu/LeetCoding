@@ -1,3 +1,6 @@
+from math import ceil
+
+
 def carFleet(self, target: int, position, speed) -> int:
     cars = [[position[i], speed[i]] for i in range(len(position))]  # O(N)
     cars.sort(reverse=True)  # O(nlog n)
@@ -39,7 +42,96 @@ def carFleet2(target, position, speed) -> int:
 
     return res  # Overall, O(nlogn)
 
+
+
+
+
+
+
+def carFleet3(target, position, speed) -> int:
+    cars = [(position[i], speed[i]) for i in range(len(position))]
+    cars.sort()
+    print(cars)
+    # [(0, 1), (3, 3), (5, 1), (8, 4), (10, 2)]
+    time = [(target - pos) / speed for pos, speed in cars]
+    print(time)
+    # [12, 3, 7, 1, 1]
+    fleets = 1
+    cur = time[-1]
+    for t in reversed(time):
+        if t > cur:
+            fleets += 1
+            cur = t
+    return fleets
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 target = 10
-position = [1]
-speed = [1]
-carFleet2(target, position, speed)
+position = [8,3,7,4,6,5]
+
+speed = [4,4,4,4,4,4]
+print(carFleet3(target, position, speed))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
